@@ -20,7 +20,7 @@ body {
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;
-    text-shadow: 0 0 20px #fff, 0 0 30px #7a7779, 0 0 40px #7a7779, 0 0 50px #7a7779, 0 0 60px #7a7779, 0 0 70px #7a7779, 0 0 80px #ff4da6;
+    text-shadow: 0 0 20px #605e5e, 0 0 30px #655e63, 0 0 40px #7a7779, 0 0 50px #7a7779, 0 0 60px #7a7779, 0 0 70px #7a7779, 0 0 80px #ff4da6;
 
 }
 .todoContainer {
@@ -29,30 +29,35 @@ body {
 
 
 input[type="text"] {
-    width: calc(100% -80px);
+    /* width: calc(100% -70px); */
     height: 20px;
     padding: 10px;
-    padding-right: 30px;
+    padding-right: 40px;
     margin-bottom: 10px;
     background-color: #fff;
     border-radius: 1.5rem;
 }
 button {
     width: calc(100% -80px);
-    height: 43px;
+    height: 41.5px;
     padding: 10px 30px;
     margin-bottom: 10px;
     background-color: rgb(196, 196, 196);
     border-radius: 1.5rem;
     color: #fff;
     position: relative;
-    right: 30px;
+    right: 40px;
+    top: 1px;
     border: none;
+    color: black;
+    font-weight: bolder;
 
 }
 
 button:hover {
     background-color: #8b8b8b;
+    color: white;
+    transition: 0.5s;
 }
 
 ul {
@@ -81,6 +86,7 @@ li {
 }
 .delete-btn {
     background-color: rgb(223, 222, 222);
+    color: black;
     border-radius: 20px 5px 20px;
     width: 30px; /* Set a fixed width and height for the circle */
     height: 30px;
@@ -95,6 +101,7 @@ li {
 
 .delete-btn:hover {
     background-color: grey;
+    color: white;
     transition: 0.5s;
 }
 .todo h2 {
@@ -114,6 +121,7 @@ li {
 }
 
 .links {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
