@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d35;
+}
+
+.container {
+    padding: 20px;
+}
+
+.clock {
+    text-align: center;
+    font-size: 3em;
+    /* flex: 0 45%; */
+}
+
+#time {
+    color: #F9E8C9;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px #fff, 0 0 30px #7a7779, 0 0 40px #7a7779, 0 0 50px #7a7779, 0 0 60px #7a7779, 0 0 70px #7a7779, 0 0 80px #ff4da6;
+
+}
+.todoContainer {
+    margin: 20px;
+}
+
+
+input[type="text"] {
+    width: calc(100% -80px);
+    height: 20px;
+    padding: 10px;
+    padding-right: 30px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 1.5rem;
+}
+button {
+    width: calc(100% -80px);
+    height: 43px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    background-color: rgb(196, 196, 196);
+    border-radius: 1.5rem;
+    color: #fff;
+    position: relative;
+    right: 30px;
+    border: none;
+
+}
+
+button:hover {
+    background-color: #8b8b8b;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.items {
+    /* display: flex; */
+    align-items: center;
+}
+
+li {
+    padding-left: 20px;
+    height: 50px;
+    min-width: 80vw;
+    background-color: #fff;
+    border-radius: 20px 5px 20px;
+
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.delete-btn {
+    background-color: rgb(223, 222, 222);
+    border-radius: 20px 5px 20px;
+    width: 30px; /* Set a fixed width and height for the circle */
+    height: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Add cursor style for better UX */
+    position: relative;
+    top: 5px;
+}
+
+.delete-btn:hover {
+    background-color: grey;
+    transition: 0.5s;
+}
+.todo h2 {
+    color: #fff;
+}
+
+.todo {
+    display: flex;
+    justify-content: center;
+    /* padding: 3vh; */
+}
+
+.badge {
+    width: 40px;
+    border-radius: 10px;;
+    height: 40px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.badgeDiv {
+    /* position: relative;
+    bottom: 55px; */
+}

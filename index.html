@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="/Designer.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div id="time">
+                <span id="hours"></span>:
+                <span id="minutes"></span>:
+                <span id="seconds"></span>
+                <span id="amorpm"></span>
+            </div>
+            <div class="links">
+                <div class="badgeDiv">
+                    <a href="https://www.google.com/" target="_blank">
+                        <img src="/OIP.jpg" alt="Chrome Badge" class="badge">
+                    </a>
+                </div>
+                <div class="badgeDiv">
+                    <a href="https://chat.openai.com/" target="_blank">
+                        <img src="/gpt.png" alt="gpt badge" class="badge">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="todoContainer">
+            <div class="todo">
+                <input type="text" id="taskInput" placeholder="Input: Task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <div class="items">
+                <ul id="taskList"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
