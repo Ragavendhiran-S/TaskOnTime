@@ -33,7 +33,7 @@
         </div>
         <div class="todoContainer">
             <div class="todo">
-                <input type="text" id="taskInput" placeholder="Input: Task">
+                <input type="text" id="taskInput" placeholder="Input: Task" onkeypress="handleKeyPress(event)">
                 <button onclick="addTask()">Add</button>
             </div>
             <div class="items">
@@ -42,6 +42,13 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                addTask(); // Call addTask function when Enter key is pressed
+            }
+        }
+    </script>
 </body>
 
 </html>

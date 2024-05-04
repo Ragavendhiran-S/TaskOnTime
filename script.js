@@ -1,87 +1,121 @@
-document.addEventListener("DOMContentLoaded", function() {
-    loadTasks();
-});
+// Function to update the clock
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var amOrPm = hours >= 12 ? 'PM' : 'AM';
 
-function loadTasks() {
-    const savedTasks = getSavedTasks();
-    const taskList = document.getElementById("taskList");
-    taskList.innerHTML = "";
-    savedTasks.forEach(task => {
-        addTaskToList(task);
-    });
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+    document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+    document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+    document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+    document.getElementById('amorpm').innerText = amOrPm;
+
+    setTimeout(updateClock, 1000); // Update every second
 }
 
+
+// Function to add a new task
 function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const taskText = taskInput.value.trim();
-    if (taskText !== "") {
-        const savedTasks = getSavedTasks();
-        savedTasks.push(taskText);
-        saveTasks(savedTasks);
-        addTaskToList(taskText);
-        taskInput.value = "";
-    }
-}
+    var taskInput = document.getElementById("taskInput");
+    var taskList = document.getElementById("taskList");
+    var input = document.getElementById("taskInput")
+    // input.addEventListener("keypress",function(e)=>{
+    //     if(e.key === "Enter") {
+    //         event.preventDefault();
 
-function addTaskToList(taskText) {
-    const taskList = document.getElementById("taskList");
-    const li = document.createElement("li");
-    li.textContent = taskText;
-    const deleteBtn = document.createElement("button");
+    //     }
+    // };)
+    if (taskInput.value.trim() === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    var taskText = taskInput.value.trim(); // Get the task text
+    var li = document.createElement("li");
+    li.textContent = taskText+" = ";
+
+    // Create a delete button for the task
+    var deleteBtn = document.createElement("button");
     deleteBtn.textContent = "X";
     deleteBtn.classList.add("delete-btn");
     deleteBtn.onclick = function() {
-        deleteTask(li, taskText);
+        removeTask(li, taskText); // Pass the task element and task text
     };
     li.appendChild(deleteBtn);
+
     taskList.appendChild(li);
+
+    // Save tasks to local storage
+    saveTasks();
+
+    taskInput.value = ""; // Clear the task input field after adding task
 }
 
-function deleteTask(taskElement, taskText) {
-    const savedTasks = getSavedTasks();
-    const index = savedTasks.indexOf(taskText);
+// Function to remove a task
+function removeTask(task, taskText) {
+    task.parentNode.removeChild(task);
+
+    // Remove the task from local storage
+    var savedTasks = getSavedTasks();
+    var index = savedTasks.indexOf(taskText);
     if (index !== -1) {
         savedTasks.splice(index, 1);
         saveTasks(savedTasks);
-        taskElement.remove();
     }
 }
 
+// Function to save tasks to local storage
 function saveTasks(tasks) {
-    document.cookie = `tasks=${JSON.stringify(tasks)}`;
-}
-
-function getSavedTasks() {
-    const cookie = document.cookie.split(";").find(cookie => cookie.trim().startsWith("tasks="));
-    if (cookie) {
-        return JSON.parse(cookie.split("=")[1]);
-    } else {
-        return [];
+    if (!tasks) {
+        tasks = Array.from(document.querySelectorAll("#taskList li")).map(li => li.textContent);
     }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// Function to load tasks from local storage
+function loadTasks() {
+    var savedTasks = getSavedTasks();
+    var taskList = document.getElementById("taskList");
+    taskList.innerHTML = ""; // Clear existing tasks
+    var deleteBtn = document.getElementById("button")
+    savedTasks.forEach(taskText => {
+        addTaskToList(taskText);
+    });
+}
 
+// Function to retrieve saved tasks from local storage
+function getSavedTasks() {
+    var tasks = localStorage.getItem("tasks");
+    return tasks ? JSON.parse(tasks) : [];
+}
 
-// time
-function updateTime() {
-    const now = new Date();
-    const options = {
-        timeZone: 'Asia/Kolkata',
-        hour12: false,
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit'
+// Function to add a task from saved tasks to the task list
+function addTaskToList(taskText) {
+    var taskList = document.getElementById("taskList");
+    var li = document.createElement("li");
+    li.textContent = taskText;
+
+    // Create a delete button for the task
+    var deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "X";
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.onclick = function() {
+        removeTask(li, taskText); // Pass the task element and task text
     };
-    const timeString = now.toLocaleTimeString('en-IN', options);
-    const [hours, minutes, seconds] = timeString.split(':');
-    document.getElementById('hours').textContent = hours % 12;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
-    document.getElementById('amorpm').textContent = hours >= 12 ? 'PM' : 'AM';
+    li.appendChild(deleteBtn);
+
+    taskList.appendChild(li);
 }
 
-// Update the time every second
-setInterval(updateTime, 1000);
+// Load tasks from local storage when the page is loaded
+window.onload = function() {
+    loadTasks();
+    updateClock();
 
-// Initial call to display the time immediately
-updateTime();
+    // Clear task input field
+    document.getElementById("taskInput").value = "";
+};

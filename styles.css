@@ -14,19 +14,30 @@ body {
     font-size: 3em;
     /* flex: 0 45%; */
 }
+.links {
+    /* text-align: right; */
+    display: flex;
+    justify-content: right;
+    position: relative;
+    bottom: 48px;
+    margin-right: 10px;
+}
 
 #time {
-    color: #F9E8C9;
+    color: #fff;
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;
-    text-shadow: 0 0 20px #605e5e, 0 0 30px #655e63, 0 0 40px #7a7779, 0 0 50px #7a7779, 0 0 60px #7a7779, 0 0 70px #7a7779, 0 0 80px #ff4da6;
+    text-shadow: 0 0 20px #fff, 0 0 30px #fff;
 
 }
 .todoContainer {
-    margin: 20px;
+    /* margin: 20px; */
+    text-align: center;
 }
-
+.todo {
+    margin-left: 30px;
+}
 
 input[type="text"] {
     /* width: calc(100% -70px); */
@@ -36,6 +47,11 @@ input[type="text"] {
     margin-bottom: 10px;
     background-color: #fff;
     border-radius: 1.5rem;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    min-width: 20vw;
 }
 button {
     width: calc(100% -80px);
@@ -69,7 +85,7 @@ ul {
 }
 .items {
     /* display: flex; */
-    align-items: center;
+    /* align-items: center; */
 }
 
 li {
@@ -120,14 +136,63 @@ li {
     height: 40px;
 }
 
-.links {
+/* .links {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     
-}
+} */
 .badgeDiv {
-    /* position: relative;
-    bottom: 55px; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.badge:hover {
+    background-color: lightgrey;
+    transition: background-color 0.3s ease;
+}
+
+
+/* animation */
+
+body {
+    min-height: 99vh;
+    border-left: solid white;
+    border-right: solid white;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+}
+
+body::before {
+    left: 0;
+    background: url('path-to-your-star-image') center center/contain no-repeat;
+    animation: star-fall 5s linear infinite;
+}
+
+body::after {
+    right: 0;
+    background: url('path-to-your-star-image') center center/contain no-repeat;
+    animation: star-fall 5s linear infinite;
+    animation-delay: 2s; /* Delay the animation for the stars on the right side */
+}
+
+@keyframes star-fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
 }
